@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wawa.rip - Disposable Email Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+        }
+        .email-box {
+            background-color: #eef;
+            padding: 10px;
+            font-size: 18px;
+            margin: 20px 0;
+            word-wrap: break-word;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .inbox {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>wawa.rip</h1>
+        <p>Your temporary email address:</p>
+        <div class="email-box" id="tempEmail">[Click below to generate]</div>
+        <button onclick="generateEmail()">Generate New Email</button>
+        <div class="inbox">
+            <h3>Inbox</h3>
+            <p>No messages yet. Use your temp email to receive messages here!</p>
+        </div>
+    </div>
+
+    <script>
+        function generateEmail() {
+            const randomString = Math.random().toString(36).substring(2, 10);
+            const email = `${randomString}@wawa.rip`;
+            document.getElementById("tempEmail").innerText = email;
+        }
+    </script>
+</body>
+</html>
