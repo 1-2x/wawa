@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #1a1a2e;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    display: block;
+}
+
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #e94560;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1, h2 {
+    color: #ffcb77;
+}
+
+button {
+    background: #0f3460;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16213e;
+}
+
+#gameUI, #settings {
+    position: absolute;
+    color: #fff;
+}
+
+#stats {
+    top: 10px;
+    left: 10px;
+}
+
+#inventory {
+    bottom: 10px;
+    left: 10px;
+}
+
+#pauseButton {
+    top: 10px;
+    right: 10px;
+}
+
+#settings {
+    top: 50px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
