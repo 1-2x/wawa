@@ -1,0 +1,97 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+.email-display {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.email-display label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#temp-email {
+    width: 60%;
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px 2px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#copy-btn {
+    background-color: #f0ad4e;
+}
+
+#refresh-btn {
+    background-color: #0275d8;
+    display: block;
+    margin: 10px auto;
+}
+
+.inbox {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+#email-list {
+    margin-top: 15px;
+    min-height: 100px;
+    border: 1px solid #eee;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.email-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.email-item:last-child {
+    border-bottom: none;
+}
+
+.email-sender, .email-subject {
+    font-weight: bold;
+}
+
+.email-body {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
