@@ -3,95 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wawa.rip</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #000000; /* Black background */
-            color: #00aaff; /* Bright blue text color - adjust as needed */
-            font-family: 'Courier New', Courier, monospace; /* Monospaced font */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Full viewport height */
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 90%;
-        }
-
-        /* Style for the ASCII art (no longer used, kept for reference if needed) */
-        /* pre {
-            font-size: 1.5em;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            white-space: pre;
-            display: inline-block;
-            text-align: left;
-        } */
-
-        /* Style for the text lines */
-        p {
-            margin: 8px 0;
-            font-size: 1em;
-        }
-
-        /* Style for the icons container */
-        .icons {
-            margin: 20px 0;
-        }
-
-        /* Style for individual icons */
-        .icons a i, .icons i {
-            font-size: 1.8em; /* Adjust icon size */
-            margin: 0 12px; /* Space between icons */
-            color: #00aaff; /* Ensure icons have the same color */
-            transition: color 0.3s ease;
-        }
-
-        /* Optional: Change icon color on hover */
-        .icons a:hover i {
-            color: #ffffff; /* White hover color */
-        }
-
-        /* Style for links */
-        a {
-            color: inherit; /* Links use the default blue color */
-            text-decoration: none; /* No underline by default */
-        }
-
-        /* Optional: Underline links on hover */
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Style for the bottom text */
-        .footer-text {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #888; /* Slightly dimmer color for footer */
-        }
-
-    </style>
+    <title>Wawa.rip - Temporary Email</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
+        <h1>Wawa.rip Temporary Email</h1>
 
-        <p style="font-size: 1.8em; font-weight: bold; margin-bottom: 20px;">fatty</p>
-        <p>Portfolio / Under Construction</p> <div class="icons">
-            <a href="https://github.com/djbi" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.tiktok.com/@faith_meows" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.roblox.com/search/users?keyword=faith_meows" target="_blank" rel="noopener noreferrer" aria-label="Roblox"><i class="fas fa-gamepad"></i></a> <i class="fab fa-discord" aria-label="Discord"></i> </div>
+        <div class="email-display">
+            <label for="temp-email">Your Temporary Email Address:</label>
+            <input type="text" id="temp-email" readonly>
+            <button id="generate-btn">Generate New Address</button>
+            <button id="copy-btn">Copy</button>
+        </div>
 
-        <p>disc: wry.rip</p> <p class="footer-text">care</p> </div>
+        <div class="inbox">
+            <h2>Inbox</h2>
+            <button id="refresh-btn">Refresh Inbox</button>
+            <div id="email-list">
+                <p>Waiting for emails...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
