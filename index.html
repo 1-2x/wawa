@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wawa.rip - Temporary Email</title>
+    <title>My Awesome Product</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    </head>
 <body>
-    <div class="container">
-        <h1>Wawa.rip Temporary Email</h1>
 
-        <div class="email-display">
-            <label for="temp-email">Your Temporary Email Address:</label>
-            <input type="text" id="temp-email" readonly>
-            <button id="generate-btn">Generate New Address</button>
-            <button id="copy-btn">Copy</button>
-        </div>
+    <header>
+        <h1>My Simple Store</h1>
+        </header>
 
-        <div class="inbox">
-            <h2>Inbox</h2>
-            <button id="refresh-btn">Refresh Inbox</button>
-            <div id="email-list">
-                <p>Waiting for emails...</p>
+    <main class="product-container">
+        <div class="product">
+            <img src="placeholder.jpg" alt="Product Image" class="product-image"> <h2 class="product-title">Awesome Gadget</h2>
+            <p class="product-description">
+                This gadget is truly awesome. It does amazing things and will improve your life.
+                Made from the finest materials. Buy it now!
+            </p>
+            <p class="product-price">£19.99</p>
+
+            <button class="buy-button snipcart-add-item"  data-item-id="gadget-01"                 data-item-price="19.99"                  data-item-url="/"                        data-item-description="A truly awesome gadget." data-item-image="placeholder.jpg"        data-item-name="Awesome Gadget">         Add to Cart / Buy Now
+            </button>
             </div>
-        </div>
-    </div>
+        </main>
 
-    <script src="script.js"></script>
-</body>
+    <footer>
+        <p>&copy; 2025 My Simple Store</p>
+    </footer>
+
+    </body>
 </html>
