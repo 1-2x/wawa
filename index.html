@@ -3,12 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meow</title> <link rel="stylesheet" href="style.css">
+    <title>wry</title> <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <img src="your-cat-image.jpg" alt="A picture" class="main-image">
+    <div id="main-container">
+        <span id="main-text">wry</span>
+    </div>
 
-        <p class="caption">meow</p> </div>
+    <audio id="bg-audio" src="background-music.mp3" autoplay loop>
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="click-audio" src="click-sound.mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Get the audio elements
+        const clickAudio = document.getElementById('click-audio');
+        const bgAudio = document.getElementById('bg-audio');
+        const container = document.getElementById('main-container');
+
+        // Attempt to play background audio on first interaction if needed (helps with autoplay issues)
+        function attemptBgAudioPlay() {
+            // Check if context is suspended and resume if necessary
+            if (bgAudio.paused && bgAudio.readyState >= 3) { // Check if paused and loaded enough
+                 bgAudio.play().catch(e => console.log("Background audio play failed:", e));
+            }
+             // Remove listener after first interaction
+            document.body.removeEventListener('click', attemptBgAudioPlay);
+            document.body.removeEventListener('keypress', attemptBgAudioPlay);
+        }
+         // Add listeners for first interaction
+        document.body.addEventListener('click', attemptBgAudioPlay);
+        document.body.addEventListener('keypress', attemptBgAudioPlay);
+
+
+        // Play click sound when the main container is clicked
+        container.addEventListener('click', () => {
+            // Ensure click sound is ready to play from start
+            clickAudio.currentTime = 0;
+            clickAudio.play().catch(e => console.log("Click audio play failed:", e));
+
+             // Also try starting background audio on click, in case initial attempt failed
+            if (bgAudio.paused && bgAudio.readyState >= 3){
+                 bgAudio.play().catch(e => console.log("Background audio play failed on click:", e));
+            }
+        });
+    </script>
 </body>
 </html>
