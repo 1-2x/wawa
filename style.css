@@ -1,208 +1,41 @@
-/* Basic Reset & Defaults */
+/* Basic Reset */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* --- Light Purple Theme Variables --- */
-:root {
-    --primary-bg: #f3e5f5;      /* Very light purple background */
-    --card-bg: #ffffff;         /* White for cards */
-    --text-color: #333333;      /* Dark grey text */
-    --heading-color: #4a148c;   /* Darker purple for headings */
-    --primary-accent: #ab47bc;  /* Medium purple for buttons/links */
-    --primary-hover: #8e24aa;   /* Darker purple for hover */
-    --border-color: #e1bee7;    /* Light purple border */
-    --footer-bg: #e1bee7;       /* Footer background */
-    --footer-text: #4a148c;    /* Footer text color */
+html, body {
+    height: 100%; /* Ensure body takes full height */
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    background-color: var(--primary-bg);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensure footer sticks to bottom */
+    display: flex; /* Use flexbox for easy centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Ensure flex container takes at least full viewport height */
+    background-color: #ffffff; /* White background */
+    font-family: Arial, sans-serif; /* Simple font */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    text-align: center; /* Center the caption text below the image */
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+.main-image {
+    display: block; /* Make image a block element */
+    max-width: 90%; /* Prevent image from exceeding viewport width */
+    max-height: 80vh; /* Prevent image from exceeding viewport height */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: auto; /* Help centering if needed */
+    margin-right: auto; /* Help centering if needed */
+    margin-bottom: 1rem; /* Space between image and text */
+     /* Optional: Add a subtle border */
+    /* border: 1px solid #eee; */
 }
 
-a {
-    color: var(--primary-accent);
-    text-decoration: none;
-}
-a:hover {
-    color: var(--primary-hover);
-    text-decoration: underline;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 2.5rem;
-    font-size: 2rem;
-    color: var(--heading-color);
-}
-
-h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--heading-color);
-}
-
-/* Header */
-.site-header {
-    background-color: var(--card-bg);
-    padding: 1rem 0;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.8rem;
+.caption {
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: #333; /* Text color */
     font-weight: bold;
-    color: var(--heading-color);
-    text-decoration: none;
-}
-.logo:hover {
-    text-decoration: none;
-    color: var(--primary-accent);
-}
-
-.cart-link {
-    font-weight: 500;
-    padding: 8px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.cart-link:hover {
-    background-color: var(--primary-accent);
-    color: #fff;
-    text-decoration: none;
-    border-color: var(--primary-accent);
-}
-/* Optional: Style cart icon if using Font Awesome */
-/* .cart-link i { margin-right: 5px; } */
-
-
-/* Main Content Area */
-.content-area {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    flex-grow: 1; /* Pushes footer down */
-}
-
-/* Product Grid */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Responsive columns */
-    gap: 30px; /* Space between cards */
-}
-
-/* Product Card */
-.product-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden; /* Keep image corners rounded */
-    display: flex;
-    flex-direction: column; /* Stack image, info */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(142, 36, 170, 0.15); /* Subtle purple shadow */
-}
-
-.product-image {
-    width: 100%;
-    height: 200px; /* Fixed height for images */
-    object-fit: cover; /* Cover the area, crop if needed */
-    border-bottom: 1px solid var(--border-color);
-}
-
-.product-info {
-    padding: 20px;
-    text-align: center;
-    flex-grow: 1; /* Allows button to be pushed down if needed */
-    display: flex;
-    flex-direction: column;
-}
-
-.product-title {
-    margin-bottom: 0.5rem;
-}
-
-.product-price {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--text-color);
-    margin-bottom: 1rem;
-}
-
-.buy-button {
-    display: inline-block;
-    background-color: var(--primary-accent);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    margin-top: auto; /* Push button to bottom of card */
-}
-.buy-button:hover {
-    background-color: var(--primary-hover);
-    color: #fff;
-    text-decoration: none;
-}
-
-/* Footer */
-.site-footer {
-    background-color: var(--footer-bg);
-    color: var(--footer-text);
-    text-align: center;
-    padding: 15px 0;
-    margin-top: auto; /* Helps stick to bottom with flex */
-}
-.site-footer p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-.site-footer a {
-    color: var(--footer-text);
-}
-
-/* Responsive Adjustments (Optional) */
-@media (max-width: 600px) {
-    h2 { font-size: 1.8rem; }
-    .product-grid {
-        grid-template-columns: 1fr; /* Stack cards on small screens */
-    }
-    .header-container {
-        flex-direction: column;
-        gap: 10px;
-    }
 }
