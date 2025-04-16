@@ -4,11 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('main-content');
     const backgroundMusic = document.getElementById('background-music');
     const customCursor = document.getElementById('custom-cursor');
-    const iconLinks = document.querySelectorAll('.icon-link'); // Select all icon links
+    const iconLinks = document.querySelectorAll('.icon-link');
+    const scrollingBanner = document.getElementById('scrolling-banner'); // Select banner
+    const footerLink = document.querySelector('.footer-credit'); // Select footer link
+
+    // Set the initial content for the new text cursor
+    if (customCursor) {
+        customCursor.textContent = '𖹭'; // The character you wanted
+    }
 
     // --- Entry Screen Logic ---
     entryScreen.addEventListener('click', () => {
         entryScreen.classList.add('hidden');
+        // Show scrolling banner when main content appears
+        if (scrollingBanner) {
+            scrollingBanner.style.display = 'block';
+        }
         setTimeout(() => {
             entryScreen.style.display = 'none';
             mainContent.classList.add('visible');
@@ -20,8 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Custom Cursor Tracking and Trail ---
     document.addEventListener('mousemove', (e) => {
-        customCursor.style.left = `${e.clientX}px`;
-        customCursor.style.top = `${e.clientY}px`;
+        // Move the custom cursor
+        if (customCursor) {
+            customCursor.style.left = `${e.clientX}px`;
+            customCursor.style.top = `${e.clientY}px`;
+        }
+        // Create trail dots
         createTrailDot(e.clientX, e.clientY);
     });
 
@@ -38,19 +53,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Icon Link Double-Click Logic ---
     iconLinks.forEach(link => {
-        // Prevent default single-click behavior (navigation)
         link.addEventListener('click', (event) => {
-            event.preventDefault();
+            event.preventDefault(); // Prevent single-click navigation
         });
-
-        // Handle double-click to open link
         link.addEventListener('dblclick', (event) => {
-            // Ensure we get the link (even if the click is on the <i> icon inside)
             const targetLink = event.currentTarget.href;
             if (targetLink) {
-                window.open(targetLink, '_blank'); // Open in new tab
+                window.open(targetLink, '_blank');
             }
         });
     });
+
+    // --- Footer Link Double-Click Logic ---
+    if (footerLink) {
+        footerLink.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent single-click navigation
+        });
+        footerLink.addEventListener('dblclick', (event) => {
+            const targetLink = event.currentTarget.href;
+            if (targetLink) {
+                window.open(targetLink, '_blank');
+            }
+        });
+    }
 
 });
