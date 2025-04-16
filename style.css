@@ -5,37 +5,62 @@
     box-sizing: border-box;
 }
 
+/* Optional: Add @font-face rule if using a custom font */
+/*
+@font-face {
+    font-family: 'YourCustomFontName';  ★★★ Replace with your font name ★★★
+    src: url('your-custom-font.woff2') format('woff2'),  ★★★ Replace with your font file path ★★★
+         url('your-custom-font.woff') format('woff');   ★★★ Replace with your font file path ★★★
+    font-weight: normal;
+    font-style: normal;
+}
+*/
+
 html, body {
-    height: 100%; /* Ensure body takes full height */
+    height: 100%;
+    overflow: hidden; /* Prevent scrollbars */
 }
 
 body {
-    display: flex; /* Use flexbox for easy centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    min-height: 100vh; /* Ensure flex container takes at least full viewport height */
-    background-color: #ffffff; /* White background */
-    font-family: Arial, sans-serif; /* Simple font */
+    background-color: #000; /* Black background fallback */
+    /* ★★★ Replace 'your-background.jpg' with your image file path ★★★ */
+    background-image: url('your-background.jpg');
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center center; /* Center the image */
+    background-repeat: no-repeat;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Indicate the page is clickable */
+    font-family: sans-serif; /* Fallback font */
 }
 
-.container {
-    text-align: center; /* Center the caption text below the image */
+#main-container {
+    /* Container is mostly for the click event, centering is handled by body */
+    text-align: center;
 }
 
-.main-image {
-    display: block; /* Make image a block element */
-    max-width: 90%; /* Prevent image from exceeding viewport width */
-    max-height: 80vh; /* Prevent image from exceeding viewport height */
-    height: auto; /* Maintain aspect ratio */
-    margin-left: auto; /* Help centering if needed */
-    margin-right: auto; /* Help centering if needed */
-    margin-bottom: 1rem; /* Space between image and text */
-     /* Optional: Add a subtle border */
-    /* border: 1px solid #eee; */
+#main-text {
+    font-size: 25vw; /* Responsive font size based on viewport width */
+    /* Or use a large fixed size: font-size: 300px; */
+    font-weight: bold; /* Or adjust as needed */
+    color: rgba(255, 255, 255, 0.9); /* White text, slightly transparent */
+
+    /* ★★★ Uncomment and replace if using a custom font ★★★ */
+    /* font-family: 'YourCustomFontName', sans-serif; */
+
+    /* Optional: Add a subtle glow */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
+                 0 0 25px rgba(255, 255, 255, 0.3);
+
+    /* Prevent text selection */
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
 }
 
-.caption {
-    font-size: 1.5rem; /* Adjust size as needed */
-    color: #333; /* Text color */
-    font-weight: bold;
+/* Hide default audio players if they appear (though they shouldn't with no 'controls' attribute) */
+audio {
+    display: none;
 }
