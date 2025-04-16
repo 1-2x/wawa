@@ -4,13 +4,18 @@ body {
     color: #eee;
     margin: 0;
     padding: 0;
-    font-family: 'Courier New', Courier, monospace; /* Retro feel */
+    font-family: 'Courier New', Courier, monospace;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Hide scrollbars */
-    cursor: none; /* Hide default cursor */
+    overflow: hidden;
+    cursor: none; /* Hide default system cursor */
+    /* Disable text selection */
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
 }
 
 /* Entry Screen */
@@ -22,23 +27,49 @@ body {
     height: 100%;
     background-color: #000;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Align scrolling text to the top */
+    justify-content: flex-start; /* Aligns content (the container) to the left */
+    align-items: flex-start; /* Aligns content (the container) to the top */
     z-index: 100;
-    cursor: pointer; /* Indicate clickable */
-    font-size: 1.5em;
+    cursor: pointer; /* Still indicate clickable area */
     opacity: 1;
     transition: opacity 0.5s ease-out;
+    overflow: hidden; /* Hide text when it scrolls off */
 }
 
 #entry-screen.hidden {
     opacity: 0;
-    pointer-events: none; /* Prevent clicks after hiding */
+    pointer-events: none;
 }
+
+/* Scrolling Text on Entry Screen */
+.scrolling-text {
+    font-size: 1.5em;
+    color: #ff00ff; /* Neon Pink */
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+    white-space: nowrap; /* Prevent text wrapping */
+    /* Animation */
+    position: absolute; /* Allows positioning for animation */
+    top: 10px; /* Position near the top */
+    left: 100%; /* Start off-screen to the right */
+    animation: scroll-left 15s linear infinite; /* Adjust duration as needed */
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0); /* Start position (just off right edge) */
+        left: 100%;
+    }
+    100% {
+        transform: translateX(-100%); /* Move fully across the screen */
+        left: 0; /* End position relative to its own width (just off left edge)*/
+    }
+}
+
 
 /* Main Content Area */
 #main-content {
-    display: none; /* Hidden initially */
+    display: none;
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -48,32 +79,26 @@ body {
 }
 
 #main-content.visible {
-    display: flex; /* Use flex for centering */
+    display: flex;
     opacity: 1;
 }
 
 /* Title Styling ("faith") */
 .faith-title {
-    font-size: 5rem; /* Adjust size as needed */
+    font-size: 5rem;
     margin-bottom: 0.5rem;
     font-weight: bold;
-    /* Mimic outline/neon effect */
-    color: #fff; /* Base color */
-    -webkit-text-stroke: 1px #ff00ff; /* Outline effect (adjust color/width) */
+    color: #fff;
+    -webkit-text-stroke: 1px #ff00ff;
     text-stroke: 1px #ff00ff;
     text-shadow:
-        0 0 5px #ff00ff,
-        0 0 10px #ff00ff,
-        0 0 15px #ff00ff,
-        0 0 20px #da00ff, /* Add purple tones */
-        0 0 35px #da00ff,
-        0 0 40px #ff007f, /* Add reddish tones */
-        0 0 50px #ff007f;
-    animation: neon-flicker 3s infinite alternate; /* Optional flicker */
+        0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff,
+        0 0 20px #da00ff, 0 0 35px #da00ff, 0 0 40px #ff007f, 0 0 50px #ff007f;
+    animation: neon-flicker 3s infinite alternate;
 }
 
-/* Optional Flicker Animation */
 @keyframes neon-flicker {
+    /* Same as before */
     0%, 18%, 22%, 25%, 53%, 57%, 100% {
         text-shadow:
             0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff,
@@ -83,67 +108,97 @@ body {
     }
     20%, 24%, 55% {
         text-shadow: none;
-        -webkit-text-stroke: 1px #990099; /* Dimmer stroke */
+        -webkit-text-stroke: 1px #990099;
          text-stroke: 1px #990099;
     }
 }
 
-/* Subtitle */
+/* Subtitle Styling (<3) */
 .subtitle {
-    font-size: 1.2rem;
+    font-size: 2.5rem; /* Make heart bigger */
     margin-bottom: 2rem;
-    color: #ccc;
+    font-weight: bold;
+    /* Base color for animation */
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+    /* Color changing animation */
+    animation: color-change-subtitle 5s linear infinite;
 }
+
+@keyframes color-change-subtitle {
+    0%   { color: #9d00ff; text-shadow: 0 0 5px #9d00ff, 0 0 10px #9d00ff; } /* Purple */
+    33%  { color: #ff0033; text-shadow: 0 0 5px #ff0033, 0 0 10px #ff0033;} /* Red */
+    66%  { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;} /* Pink */
+    100% { color: #9d00ff; text-shadow: 0 0 5px #9d00ff, 0 0 10px #9d00ff; } /* Back to Purple */
+}
+
 
 /* Icon Links */
 .icon-links {
     margin-bottom: 2rem;
 }
 
-.icon-links a {
-    color: #ff00ff; /* Neon pink/purple */
+.icon-links a { /* Apply neon style and animation to the link itself */
+    color: #ff00ff; /* Base color */
     text-decoration: none;
-    font-size: 2rem; /* Adjust icon size */
+    font-size: 2rem;
     margin: 0 0.75rem;
     transition: color 0.3s, text-shadow 0.3s;
+    /* Neon effect */
+    text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff;
+    animation: color-change-icons 6s linear infinite; /* Color changing */
+    display: inline-block; /* Ensure proper spacing and application */
 }
 
+/* Apply animation to the icon glyph inside the link */
+.icon-links a i {
+    display: block; /* Helps with consistent animation if needed */
+}
+
+
+@keyframes color-change-icons {
+    0%   { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; } /* Pink */
+    33%  { color: #00ffff; text-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff; } /* Cyan */
+    66%  { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; } /* Pink */
+    100% { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; } /* Pink */
+}
+
+/* Hover effect - slightly brighter */
 .icon-links a:hover {
     color: #fff;
-    text-shadow: 0 0 10px #ff00ff;
+    text-shadow: 0 0 6px #ff00ff, 0 0 12px #ff00ff, 0 0 18px #ff00ff;
 }
 
 /* Contact Info & Footer */
 .contact-info {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: #aaa;
+    margin-bottom: 1rem; /* Space above */
 }
 .contact-info p {
     margin: 0.3rem 0;
 }
 
-.footer-text {
-    font-size: 0.9rem;
-    color: #aaa;
+/* Neon Pink style for specific text elements */
+.neon-pink-text {
+    font-size: 1rem;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
 }
-
 
 /* --- Custom Cursor --- */
 #custom-cursor {
-    position: fixed; /* Use fixed to position relative to viewport */
-    width: 20px; /* Size of the heart */
+    position: fixed;
+    width: 20px;
     height: 20px;
-    /* background-color: #ff00ff; Handled by animation */
-    pointer-events: none; /* Prevent cursor from blocking clicks */
-    z-index: 9999; /* Ensure it's on top */
-    left: -100px; /* Start off-screen */
+    pointer-events: none;
+    z-index: 9999;
+    left: -100px;
     top: -100px;
-    transform: rotate(-45deg); /* Rotate square to make diamond */
-    animation: cursor-color-change 4s linear infinite;
+    transform: rotate(-45deg);
+    /* Base background needs to be set for pseudo-elements to inherit if 'inherit' is used */
+    background-color: transparent;
+    animation: cursor-color-change 4s linear infinite; /* Apply to main for rotation */
 }
 
-/* Heart Shape using Pseudo-elements */
 #custom-cursor::before,
 #custom-cursor::after {
     content: '';
@@ -151,48 +206,44 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    /* Inherit animated background color */
-    background-color: inherit;
-    animation: cursor-color-change 4s linear infinite; /* Apply animation here too */
+    /* Each pseudo-element needs its own background animation */
+    animation: cursor-color-change 4s linear infinite;
 }
 
 #custom-cursor::before {
-    top: -10px; /* Position top circle */
+    top: -10px;
     left: 0;
 }
 
 #custom-cursor::after {
     top: 0;
-    left: 10px; /* Position right circle */
+    left: 10px;
 }
 
-/* Cursor Color Change Animation */
 @keyframes cursor-color-change {
+    /* Same as before */
     0%   { background-color: #ff00ff; } /* Neon Pink */
     33%  { background-color: #9d00ff; } /* Purple */
     66%  { background-color: #ff0033; } /* Red */
     100% { background-color: #ff00ff; } /* Back to Pink */
 }
 
-
 /* Cursor Trail */
 .trail-dot {
-    position: absolute; /* Position relative to the document */
+    position: absolute;
     width: 6px;
     height: 6px;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9998; /* Below main cursor */
+    z-index: 9998;
     opacity: 1;
-    /* Apply both fade-out and color change animations */
     animation: fade-out 0.8s linear forwards, cursor-color-change 4s linear infinite;
-    /* Center the dot visually on the pointer location */
     transform: translate(-50%, -50%);
 }
 
 @keyframes fade-out {
     to {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5); /* Optional shrink */
+        transform: translate(-50%, -50%) scale(0.5);
     }
 }
