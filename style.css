@@ -58,7 +58,7 @@ body {
     margin-bottom: 0.5rem;
     font-weight: bold;
     /* Mimic outline/neon effect */
-    color: #fff; /* Base color (can be transparent if stroke works well) */
+    color: #fff; /* Base color */
     -webkit-text-stroke: 1px #ff00ff; /* Outline effect (adjust color/width) */
     text-stroke: 1px #ff00ff;
     text-shadow:
@@ -134,43 +134,37 @@ body {
     position: fixed; /* Use fixed to position relative to viewport */
     width: 20px; /* Size of the heart */
     height: 20px;
-    /* background-color: #ff00ff;  Handled by animation */
-    border-radius: 50% 50% 50% 0; /* Basic heart shape part 1 */
-    transform: rotate(-45deg);
+    /* background-color: #ff00ff; Handled by animation */
     pointer-events: none; /* Prevent cursor from blocking clicks */
     z-index: 9999; /* Ensure it's on top */
     left: -100px; /* Start off-screen */
     top: -100px;
+    transform: rotate(-45deg); /* Rotate square to make diamond */
     animation: cursor-color-change 4s linear infinite;
 }
 
-/* Heart Shape using Pseudo-element */
-#custom-cursor::before {
+/* Heart Shape using Pseudo-elements */
+#custom-cursor::before,
+#custom-cursor::after {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
-    background: inherit; /* Inherit background from parent */
     border-radius: 50%;
-    top: -10px; /* Position relative to the main rotated div */
-    left: 0;
-    background-color: transparent; /* Needs background set by animation */
+    /* Inherit animated background color */
+    background-color: inherit;
     animation: cursor-color-change 4s linear infinite; /* Apply animation here too */
-
 }
- #custom-cursor::after { /* No need for ::after if ::before is used like this */
-    /* If needed for more complex shape, add similarly */
-     content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: inherit; /* Inherit background from parent */
-    border-radius: 50%;
+
+#custom-cursor::before {
+    top: -10px; /* Position top circle */
+    left: 0;
+}
+
+#custom-cursor::after {
     top: 0;
-    left: 10px; /* Position relative to the main rotated div */
-     background-color: transparent; /* Needs background set by animation */
-     animation: cursor-color-change 4s linear infinite; /* Apply animation here too */
- }
+    left: 10px; /* Position right circle */
+}
 
 /* Cursor Color Change Animation */
 @keyframes cursor-color-change {
@@ -183,15 +177,17 @@ body {
 
 /* Cursor Trail */
 .trail-dot {
-    position: absolute; /* Changed from fixed to absolute */
+    position: absolute; /* Position relative to the document */
     width: 6px;
     height: 6px;
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998; /* Below main cursor */
     opacity: 1;
-    animation: fade-out 0.8s linear forwards, cursor-color-change 4s linear infinite; /* Fade out and color change */
-    transform: translate(-50%, -50%); /* Center the dot on the cursor point */
+    /* Apply both fade-out and color change animations */
+    animation: fade-out 0.8s linear forwards, cursor-color-change 4s linear infinite;
+    /* Center the dot visually on the pointer location */
+    transform: translate(-50%, -50%);
 }
 
 @keyframes fade-out {
