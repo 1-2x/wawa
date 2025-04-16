@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    /* This rule hides the default OS cursor site-wide */
+    /* Hide default cursor on body as a base */
     cursor: none !important;
     user-select: none;
     -webkit-user-select: none;
@@ -18,8 +18,12 @@ body {
     -ms-user-select: none;
 }
 
+/* Universal Selector to Force Cursor Hiding Everywhere */
+* {
+    cursor: none !important;
+}
+
 /* Scrolling Banner REMOVED */
-/* @keyframes scroll-left REMOVED */
 
 /* Entry Screen */
 #entry-screen {
@@ -36,7 +40,7 @@ body {
     opacity: 1;
     transition: opacity 0.5s ease-out;
     overflow: visible;
-    /* cursor: pointer; removed - using body rule */
+    /* Cursor forced to none by universal (*) rule */
 }
 
 #entry-screen p {
@@ -61,7 +65,6 @@ body {
     justify-content: center;
     opacity: 0;
     transition: opacity 1s ease-in;
-    /* padding-top: 40px; removed */
 }
 
 #main-content.visible {
@@ -72,9 +75,8 @@ body {
 /* Title Styling (ASCII Art) */
 .faith-title {
     font-family: 'Courier New', Courier, monospace;
-    /* Made smaller */
-    font-size: 1.0rem; /* <<< ADJUSTED SIZE */
-    line-height: 1.0; /* <<< ADJUSTED LINE HEIGHT */
+    font-size: 1.0rem;
+    line-height: 1.0;
     margin-bottom: 1.5rem;
     font-weight: normal;
     text-align: center;
@@ -100,7 +102,7 @@ body {
     text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff;
     animation: color-change-icons 6s linear infinite;
     display: inline-block;
-    /* cursor: pointer; removed */
+     /* Cursor forced to none by universal (*) rule */
 }
 
 .icon-links a i {
@@ -135,26 +137,23 @@ body {
 
 /* Footer Credit Link */
 .footer-credit {
-    /* Positioning it at the bottom */
     position: fixed;
-    bottom: 10px; /* Distance from bottom */
-    left: 0; /* Take full width */
+    bottom: 10px;
+    left: 0;
     right: 0;
-    text-align: center; /* Center text */
-    z-index: 50; /* Ensure it's above background if needed */
-
+    text-align: center;
+    z-index: 50;
     display: block;
     font-size: 0.7rem;
     color: #ff00ff;
     text-shadow: 0 0 3px #ff00ff;
-    /* margin-top: 2rem; removed, using fixed positioning */
     text-decoration: none;
     transition: color 0.3s, text-shadow 0.3s;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    /* cursor: pointer; removed */
+    /* Cursor forced to none by universal (*) rule */
 }
 
 .footer-credit:hover {
@@ -166,7 +165,7 @@ body {
 /* --- Custom Cursor --- */
 #custom-cursor {
     position: fixed;
-    pointer-events: none;
+    pointer-events: none; /* Important: prevents custom cursor interfering */
     z-index: 9999;
     left: -100px;
     top: -100px;
@@ -177,7 +176,8 @@ body {
     animation: cursor-color-change-text 4s linear infinite;
     width: auto;
     height: auto;
-    transform: translate(-50%, -50%); /* For centering */
+    transform: translate(-50%, -50%);
+    /* Cursor forced to none by universal (*) rule */
 }
 
 #custom-cursor::before,
@@ -203,6 +203,7 @@ body {
     opacity: 1;
     animation: fade-out 0.8s linear forwards, cursor-color-change-trail 4s linear infinite;
     transform: translate(-50%, -50%);
+    /* Cursor forced to none by universal (*) rule */
 }
 
 @keyframes cursor-color-change-trail {
