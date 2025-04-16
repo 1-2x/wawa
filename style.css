@@ -10,12 +10,49 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    cursor: none; /* This rule hides the default OS cursor site-wide */
+    cursor: none; /* Hides the default OS cursor site-wide */
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
+
+/* Scrolling Banner at Top */
+#scrolling-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden; /* Important to contain the text */
+    background-color: #000; /* Optional: background */
+    z-index: 50; /* Above main content, below cursor */
+    padding: 5px 0; /* Optional padding */
+    display: none; /* Hidden initially, shown with main content */
+}
+
+#scrolling-banner p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    color: #ff00ff; /* Neon Pink */
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+    white-space: nowrap; /* Keep text on one line */
+    /* Animation */
+    display: inline-block; /* Allows transform */
+    padding-left: 100%; /* Start position off-screen right */
+    animation: scroll-left 15s linear infinite;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        /* Move text its own width plus the screen width to the left */
+        transform: translateX(-200%); /* Adjust multiplier if needed based on text length*/
+    }
+}
+
 
 /* Entry Screen */
 #entry-screen {
@@ -57,6 +94,7 @@ body {
     justify-content: center;
     opacity: 0;
     transition: opacity 1s ease-in;
+    padding-top: 40px; /* Add padding to avoid overlap with scrolling banner */
 }
 
 #main-content.visible {
@@ -64,11 +102,10 @@ body {
     opacity: 1;
 }
 
-/* Title Styling (ASCII Art using PRE tag) */
+/* Title Styling (ASCII Art) */
 .faith-title {
     font-family: 'Courier New', Courier, monospace;
-    /* Increased font size for ASCII art */
-    font-size: 1.8rem; /* <<< ADJUSTED SIZE */
+    font-size: 1.8rem;
     line-height: 1.1;
     margin-bottom: 1.5rem;
     font-weight: normal;
@@ -78,7 +115,7 @@ body {
     margin-right: auto;
     color: #ff00ff;
     text-shadow: 0 0 6px #ff00ff, 0 0 10px #ff00ff;
-    animation: none; /* Flicker/stroke removed */
+    animation: none;
 }
 
 /* Icon Links */
@@ -115,7 +152,7 @@ body {
 
 /* Contact Info */
 .contact-info {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* Space below discord name */
 }
 .contact-info p {
     margin: 0.3rem 0;
@@ -127,64 +164,83 @@ body {
     text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
 }
 
+/* Footer Credit Link */
+.footer-credit {
+    display: block; /* Make it block for margin */
+    font-size: 0.7rem; /* Very small */
+    color: #ff00ff; /* Neon pink */
+    text-shadow: 0 0 3px #ff00ff; /* Subtle glow */
+    margin-top: 2rem; /* Space above */
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+    user-select: none; /* Already on body, but explicit here too */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.footer-credit:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+}
+
+
 /* --- Custom Cursor --- */
 #custom-cursor {
     position: fixed;
-    /* Decreased size */
-    width: 15px;  /* <<< ADJUSTED SIZE */
-    height: 15px; /* <<< ADJUSTED SIZE */
     pointer-events: none;
     z-index: 9999;
     left: -100px;
     top: -100px;
-    transform: rotate(-45deg);
-    background-color: transparent;
-    animation: cursor-color-change 4s linear infinite;
+    /* Style as text */
+    font-size: 2rem; /* Adjust size of the character */
+    line-height: 1;
+    text-align: center;
+    background-color: transparent; /* Ensure no background */
+    /* Apply color animation to text */
+    animation: cursor-color-change-text 4s linear infinite;
+    /* Remove properties related to old heart shape */
+    width: auto;
+    height: auto;
+    transform: none;
 }
 
+/* Remove pseudo-elements used for heart shape */
 #custom-cursor::before,
 #custom-cursor::after {
-    content: '';
+    content: none;
+}
+
+/* Updated animation to change TEXT color */
+@keyframes cursor-color-change-text {
+    0%   { color: #ff00ff; } /* Neon Pink */
+    33%  { color: #9d00ff; } /* Purple */
+    66%  { color: #ff0033; } /* Red */
+    100% { color: #ff00ff; } /* Back to Pink */
+}
+
+/* Cursor Trail (still uses colored dots) */
+.trail-dot {
     position: absolute;
-    /* Decreased size */
-    width: 15px;  /* <<< ADJUSTED SIZE */
-    height: 15px; /* <<< ADJUSTED SIZE */
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
-    animation: cursor-color-change 4s linear infinite;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 1;
+    /* Animation uses background-color still */
+    animation: fade-out 0.8s linear forwards, cursor-color-change-trail 4s linear infinite;
+    transform: translate(-50%, -50%);
 }
 
-#custom-cursor::before {
-    /* Adjusted position */
-    top: -7px;   /* <<< ADJUSTED POSITION */
-    left: 0;
-}
-
-#custom-cursor::after {
-    /* Adjusted position */
-    top: 0;
-    left: 7px;    /* <<< ADJUSTED POSITION */
-}
-
-@keyframes cursor-color-change {
+/* Separate animation for trail background to avoid conflicts */
+@keyframes cursor-color-change-trail {
     0%   { background-color: #ff00ff; }
     33%  { background-color: #9d00ff; }
     66%  { background-color: #ff0033; }
     100% { background-color: #ff00ff; }
 }
 
-/* Cursor Trail */
-.trail-dot {
-    position: absolute;
-    /* Decreased size */
-    width: 4px;   /* <<< ADJUSTED SIZE */
-    height: 4px;  /* <<< ADJUSTED SIZE */
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    opacity: 1;
-    animation: fade-out 0.8s linear forwards, cursor-color-change 4s linear infinite;
-    transform: translate(-50%, -50%);
-}
 
 @keyframes fade-out {
     to {
