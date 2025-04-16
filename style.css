@@ -10,15 +10,14 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    cursor: none; /* Hide default system cursor */
-    /* Disable text selection */
+    cursor: none; /* Hides the default system cursor site-wide */
     user-select: none;
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE/Edge */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-/* Entry Screen */
+/* Entry Screen - Reverted */
 #entry-screen {
     position: fixed;
     top: 0;
@@ -27,44 +26,35 @@ body {
     height: 100%;
     background-color: #000;
     display: flex;
-    /* Align scrolling text to the top */
-    justify-content: flex-start; /* Aligns content (the container) to the left */
-    align-items: flex-start; /* Aligns content (the container) to the top */
+    /* Reverted alignment */
+    justify-content: center;
+    align-items: center;
     z-index: 100;
-    cursor: pointer; /* Still indicate clickable area */
+    cursor: pointer;
     opacity: 1;
     transition: opacity 0.5s ease-out;
-    overflow: hidden; /* Hide text when it scrolls off */
+    /* Remove overflow:hidden if it was added for scrolling text */
+    overflow: visible;
 }
+
+/* Reverted Entry Screen Text Style */
+#entry-screen p {
+     font-size: 1.5em;
+     color: #eee; /* Standard text color */
+     text-shadow: none; /* Remove neon effect if added previously */
+     /* Ensure no animation/positioning remains */
+     position: static;
+     animation: none;
+}
+
 
 #entry-screen.hidden {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Scrolling Text on Entry Screen */
-.scrolling-text {
-    font-size: 1.5em;
-    color: #ff00ff; /* Neon Pink */
-    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
-    white-space: nowrap; /* Prevent text wrapping */
-    /* Animation */
-    position: absolute; /* Allows positioning for animation */
-    top: 10px; /* Position near the top */
-    left: 100%; /* Start off-screen to the right */
-    animation: scroll-left 15s linear infinite; /* Adjust duration as needed */
-}
-
-@keyframes scroll-left {
-    0% {
-        transform: translateX(0); /* Start position (just off right edge) */
-        left: 100%;
-    }
-    100% {
-        transform: translateX(-100%); /* Move fully across the screen */
-        left: 0; /* End position relative to its own width (just off left edge)*/
-    }
-}
+/* REMOVED .scrolling-text rule */
+/* REMOVED @keyframes scroll-left */
 
 
 /* Main Content Area */
@@ -83,54 +73,27 @@ body {
     opacity: 1;
 }
 
-/* Title Styling ("faith") */
-.faith-title {
-    font-size: 5rem;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: #fff;
-    -webkit-text-stroke: 1px #ff00ff;
-    text-stroke: 1px #ff00ff;
-    text-shadow:
-        0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff,
-        0 0 20px #da00ff, 0 0 35px #da00ff, 0 0 40px #ff007f, 0 0 50px #ff007f;
-    animation: neon-flicker 3s infinite alternate;
+/* Title Styling (ASCII Art using PRE tag) */
+.faith-title { /* Now targets pre.faith-title */
+    font-family: 'Courier New', Courier, monospace; /* Crucial for ASCII art */
+    font-size: 1rem; /* Adjust as needed for ASCII art size */
+    line-height: 1.1; /* Adjust line spacing for ASCII art */
+    margin-bottom: 1.5rem;
+    font-weight: normal; /* Normal weight for pre */
+    text-align: center; /* Center the pre block */
+    width: fit-content; /* Adjust width to content */
+    margin-left: auto;
+    margin-right: auto;
+    /* Simplified Neon Effect for ASCII Art */
+    color: #ff00ff; /* Neon Pink/Purple */
+    text-shadow: 0 0 6px #ff00ff, 0 0 10px #ff00ff;
+    /* Remove stroke and complex shadow/flicker animation */
+    -webkit-text-stroke: none;
+    animation: none;
 }
 
-@keyframes neon-flicker {
-    /* Same as before */
-    0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        text-shadow:
-            0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff,
-            0 0 20px #da00ff, 0 0 35px #da00ff, 0 0 40px #ff007f, 0 0 50px #ff007f;
-        -webkit-text-stroke: 1px #ff00ff;
-        text-stroke: 1px #ff00ff;
-    }
-    20%, 24%, 55% {
-        text-shadow: none;
-        -webkit-text-stroke: 1px #990099;
-         text-stroke: 1px #990099;
-    }
-}
-
-/* Subtitle Styling (<3) */
-.subtitle {
-    font-size: 2.5rem; /* Make heart bigger */
-    margin-bottom: 2rem;
-    font-weight: bold;
-    /* Base color for animation */
-    color: #ff00ff;
-    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
-    /* Color changing animation */
-    animation: color-change-subtitle 5s linear infinite;
-}
-
-@keyframes color-change-subtitle {
-    0%   { color: #9d00ff; text-shadow: 0 0 5px #9d00ff, 0 0 10px #9d00ff; } /* Purple */
-    33%  { color: #ff0033; text-shadow: 0 0 5px #ff0033, 0 0 10px #ff0033;} /* Red */
-    66%  { color: #ff00ff; text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;} /* Pink */
-    100% { color: #9d00ff; text-shadow: 0 0 5px #9d00ff, 0 0 10px #9d00ff; } /* Back to Purple */
-}
+/* REMOVED .subtitle rule */
+/* REMOVED @keyframes color-change-subtitle */
 
 
 /* Icon Links */
@@ -138,32 +101,29 @@ body {
     margin-bottom: 2rem;
 }
 
-.icon-links a { /* Apply neon style and animation to the link itself */
-    color: #ff00ff; /* Base color */
+.icon-links a {
+    color: #ff00ff;
     text-decoration: none;
     font-size: 2rem;
     margin: 0 0.75rem;
     transition: color 0.3s, text-shadow 0.3s;
-    /* Neon effect */
     text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff;
-    animation: color-change-icons 6s linear infinite; /* Color changing */
-    display: inline-block; /* Ensure proper spacing and application */
+    animation: color-change-icons 6s linear infinite;
+    display: inline-block;
 }
 
-/* Apply animation to the icon glyph inside the link */
 .icon-links a i {
-    display: block; /* Helps with consistent animation if needed */
+    display: block;
 }
-
 
 @keyframes color-change-icons {
-    0%   { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; } /* Pink */
-    33%  { color: #00ffff; text-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff; } /* Cyan */
-    66%  { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; } /* Pink */
-    100% { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; } /* Pink */
+    /* Same as before */
+    0%   { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; }
+    33%  { color: #00ffff; text-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff; }
+    66%  { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; }
+    100% { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; }
 }
 
-/* Hover effect - slightly brighter */
 .icon-links a:hover {
     color: #fff;
     text-shadow: 0 0 6px #ff00ff, 0 0 12px #ff00ff, 0 0 18px #ff00ff;
@@ -171,13 +131,12 @@ body {
 
 /* Contact Info & Footer */
 .contact-info {
-    margin-bottom: 1rem; /* Space above */
+    margin-bottom: 1rem;
 }
 .contact-info p {
     margin: 0.3rem 0;
 }
 
-/* Neon Pink style for specific text elements */
 .neon-pink-text {
     font-size: 1rem;
     color: #ff00ff;
@@ -185,6 +144,7 @@ body {
 }
 
 /* --- Custom Cursor --- */
+/* (Cursor and Trail CSS remains the same as the previous version) */
 #custom-cursor {
     position: fixed;
     width: 20px;
@@ -194,9 +154,8 @@ body {
     left: -100px;
     top: -100px;
     transform: rotate(-45deg);
-    /* Base background needs to be set for pseudo-elements to inherit if 'inherit' is used */
     background-color: transparent;
-    animation: cursor-color-change 4s linear infinite; /* Apply to main for rotation */
+    animation: cursor-color-change 4s linear infinite;
 }
 
 #custom-cursor::before,
@@ -206,7 +165,6 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    /* Each pseudo-element needs its own background animation */
     animation: cursor-color-change 4s linear infinite;
 }
 
@@ -221,14 +179,12 @@ body {
 }
 
 @keyframes cursor-color-change {
-    /* Same as before */
-    0%   { background-color: #ff00ff; } /* Neon Pink */
-    33%  { background-color: #9d00ff; } /* Purple */
-    66%  { background-color: #ff0033; } /* Red */
-    100% { background-color: #ff00ff; } /* Back to Pink */
+    0%   { background-color: #ff00ff; }
+    33%  { background-color: #9d00ff; }
+    66%  { background-color: #ff0033; }
+    100% { background-color: #ff00ff; }
 }
 
-/* Cursor Trail */
 .trail-dot {
     position: absolute;
     width: 6px;
