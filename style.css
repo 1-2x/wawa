@@ -1,66 +1,202 @@
-/* Basic Reset */
-* {
+/* General Styles */
+body {
+    background-color: #000;
+    color: #eee;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Optional: Add @font-face rule if using a custom font */
-/*
-@font-face {
-    font-family: 'YourCustomFontName';  ★★★ Replace with your font name ★★★
-    src: url('your-custom-font.woff2') format('woff2'),  ★★★ Replace with your font file path ★★★
-         url('your-custom-font.woff') format('woff');   ★★★ Replace with your font file path ★★★
-    font-weight: normal;
-    font-style: normal;
-}
-*/
-
-html, body {
-    height: 100%;
-    overflow: hidden; /* Prevent scrollbars */
-}
-
-body {
-    background-color: #000; /* Black background fallback */
-    /* ★★★ Replace 'your-background.jpg' with your image file path ★★★ */
-    background-image: url('your-background.jpg');
-    background-size: cover; /* Cover the entire viewport */
-    background-position: center center; /* Center the image */
-    background-repeat: no-repeat;
-    display: flex; /* Use flexbox for centering */
+    font-family: 'Courier New', Courier, monospace; /* Retro feel */
+    min-height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer; /* Indicate the page is clickable */
-    font-family: sans-serif; /* Fallback font */
+    overflow: hidden; /* Hide scrollbars */
+    cursor: none; /* Hide default cursor */
 }
 
-#main-container {
-    /* Container is mostly for the click event, centering is handled by body */
+/* Entry Screen */
+#entry-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    cursor: pointer; /* Indicate clickable */
+    font-size: 1.5em;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#entry-screen.hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevent clicks after hiding */
+}
+
+/* Main Content Area */
+#main-content {
+    display: none; /* Hidden initially */
     text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 1s ease-in;
 }
 
-#main-text {
-    font-size: 25vw; /* Responsive font size based on viewport width */
-    /* Or use a large fixed size: font-size: 300px; */
-    font-weight: bold; /* Or adjust as needed */
-    color: rgba(255, 255, 255, 0.9); /* White text, slightly transparent */
-
-    /* ★★★ Uncomment and replace if using a custom font ★★★ */
-    /* font-family: 'YourCustomFontName', sans-serif; */
-
-    /* Optional: Add a subtle glow */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
-                 0 0 25px rgba(255, 255, 255, 0.3);
-
-    /* Prevent text selection */
-    user-select: none;
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
+#main-content.visible {
+    display: flex; /* Use flex for centering */
+    opacity: 1;
 }
 
-/* Hide default audio players if they appear (though they shouldn't with no 'controls' attribute) */
-audio {
-    display: none;
+/* Title Styling ("faith") */
+.faith-title {
+    font-size: 5rem; /* Adjust size as needed */
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    /* Mimic outline/neon effect */
+    color: #fff; /* Base color (can be transparent if stroke works well) */
+    -webkit-text-stroke: 1px #ff00ff; /* Outline effect (adjust color/width) */
+    text-stroke: 1px #ff00ff;
+    text-shadow:
+        0 0 5px #ff00ff,
+        0 0 10px #ff00ff,
+        0 0 15px #ff00ff,
+        0 0 20px #da00ff, /* Add purple tones */
+        0 0 35px #da00ff,
+        0 0 40px #ff007f, /* Add reddish tones */
+        0 0 50px #ff007f;
+    animation: neon-flicker 3s infinite alternate; /* Optional flicker */
+}
+
+/* Optional Flicker Animation */
+@keyframes neon-flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+            0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff,
+            0 0 20px #da00ff, 0 0 35px #da00ff, 0 0 40px #ff007f, 0 0 50px #ff007f;
+        -webkit-text-stroke: 1px #ff00ff;
+        text-stroke: 1px #ff00ff;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+        -webkit-text-stroke: 1px #990099; /* Dimmer stroke */
+         text-stroke: 1px #990099;
+    }
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ccc;
+}
+
+/* Icon Links */
+.icon-links {
+    margin-bottom: 2rem;
+}
+
+.icon-links a {
+    color: #ff00ff; /* Neon pink/purple */
+    text-decoration: none;
+    font-size: 2rem; /* Adjust icon size */
+    margin: 0 0.75rem;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.icon-links a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+/* Contact Info & Footer */
+.contact-info {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+.contact-info p {
+    margin: 0.3rem 0;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+
+/* --- Custom Cursor --- */
+#custom-cursor {
+    position: fixed; /* Use fixed to position relative to viewport */
+    width: 20px; /* Size of the heart */
+    height: 20px;
+    /* background-color: #ff00ff;  Handled by animation */
+    border-radius: 50% 50% 50% 0; /* Basic heart shape part 1 */
+    transform: rotate(-45deg);
+    pointer-events: none; /* Prevent cursor from blocking clicks */
+    z-index: 9999; /* Ensure it's on top */
+    left: -100px; /* Start off-screen */
+    top: -100px;
+    animation: cursor-color-change 4s linear infinite;
+}
+
+/* Heart Shape using Pseudo-element */
+#custom-cursor::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: inherit; /* Inherit background from parent */
+    border-radius: 50%;
+    top: -10px; /* Position relative to the main rotated div */
+    left: 0;
+    background-color: transparent; /* Needs background set by animation */
+    animation: cursor-color-change 4s linear infinite; /* Apply animation here too */
+
+}
+ #custom-cursor::after { /* No need for ::after if ::before is used like this */
+    /* If needed for more complex shape, add similarly */
+     content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: inherit; /* Inherit background from parent */
+    border-radius: 50%;
+    top: 0;
+    left: 10px; /* Position relative to the main rotated div */
+     background-color: transparent; /* Needs background set by animation */
+     animation: cursor-color-change 4s linear infinite; /* Apply animation here too */
+ }
+
+/* Cursor Color Change Animation */
+@keyframes cursor-color-change {
+    0%   { background-color: #ff00ff; } /* Neon Pink */
+    33%  { background-color: #9d00ff; } /* Purple */
+    66%  { background-color: #ff0033; } /* Red */
+    100% { background-color: #ff00ff; } /* Back to Pink */
+}
+
+
+/* Cursor Trail */
+.trail-dot {
+    position: absolute; /* Changed from fixed to absolute */
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998; /* Below main cursor */
+    opacity: 1;
+    animation: fade-out 0.8s linear forwards, cursor-color-change 4s linear infinite; /* Fade out and color change */
+    transform: translate(-50%, -50%); /* Center the dot on the cursor point */
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5); /* Optional shrink */
+    }
 }
