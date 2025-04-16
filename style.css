@@ -10,14 +10,14 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    cursor: none; /* Hides the default system cursor site-wide */
+    cursor: none; /* This rule hides the default OS cursor site-wide */
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
 
-/* Entry Screen - Reverted */
+/* Entry Screen */
 #entry-screen {
     position: fixed;
     top: 0;
@@ -26,36 +26,27 @@ body {
     height: 100%;
     background-color: #000;
     display: flex;
-    /* Reverted alignment */
     justify-content: center;
     align-items: center;
     z-index: 100;
     cursor: pointer;
     opacity: 1;
     transition: opacity 0.5s ease-out;
-    /* Remove overflow:hidden if it was added for scrolling text */
     overflow: visible;
 }
 
-/* Reverted Entry Screen Text Style */
 #entry-screen p {
      font-size: 1.5em;
-     color: #eee; /* Standard text color */
-     text-shadow: none; /* Remove neon effect if added previously */
-     /* Ensure no animation/positioning remains */
+     color: #eee;
+     text-shadow: none;
      position: static;
      animation: none;
 }
-
 
 #entry-screen.hidden {
     opacity: 0;
     pointer-events: none;
 }
-
-/* REMOVED .scrolling-text rule */
-/* REMOVED @keyframes scroll-left */
-
 
 /* Main Content Area */
 #main-content {
@@ -74,27 +65,21 @@ body {
 }
 
 /* Title Styling (ASCII Art using PRE tag) */
-.faith-title { /* Now targets pre.faith-title */
-    font-family: 'Courier New', Courier, monospace; /* Crucial for ASCII art */
-    font-size: 1rem; /* Adjust as needed for ASCII art size */
-    line-height: 1.1; /* Adjust line spacing for ASCII art */
+.faith-title {
+    font-family: 'Courier New', Courier, monospace;
+    /* Increased font size for ASCII art */
+    font-size: 1.8rem; /* <<< ADJUSTED SIZE */
+    line-height: 1.1;
     margin-bottom: 1.5rem;
-    font-weight: normal; /* Normal weight for pre */
-    text-align: center; /* Center the pre block */
-    width: fit-content; /* Adjust width to content */
+    font-weight: normal;
+    text-align: center;
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    /* Simplified Neon Effect for ASCII Art */
-    color: #ff00ff; /* Neon Pink/Purple */
+    color: #ff00ff;
     text-shadow: 0 0 6px #ff00ff, 0 0 10px #ff00ff;
-    /* Remove stroke and complex shadow/flicker animation */
-    -webkit-text-stroke: none;
-    animation: none;
+    animation: none; /* Flicker/stroke removed */
 }
-
-/* REMOVED .subtitle rule */
-/* REMOVED @keyframes color-change-subtitle */
-
 
 /* Icon Links */
 .icon-links {
@@ -117,7 +102,6 @@ body {
 }
 
 @keyframes color-change-icons {
-    /* Same as before */
     0%   { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; }
     33%  { color: #00ffff; text-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff; }
     66%  { color: #ff00ff; text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff; }
@@ -129,7 +113,7 @@ body {
     text-shadow: 0 0 6px #ff00ff, 0 0 12px #ff00ff, 0 0 18px #ff00ff;
 }
 
-/* Contact Info & Footer */
+/* Contact Info */
 .contact-info {
     margin-bottom: 1rem;
 }
@@ -144,11 +128,11 @@ body {
 }
 
 /* --- Custom Cursor --- */
-/* (Cursor and Trail CSS remains the same as the previous version) */
 #custom-cursor {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    /* Decreased size */
+    width: 15px;  /* <<< ADJUSTED SIZE */
+    height: 15px; /* <<< ADJUSTED SIZE */
     pointer-events: none;
     z-index: 9999;
     left: -100px;
@@ -162,20 +146,23 @@ body {
 #custom-cursor::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
+    /* Decreased size */
+    width: 15px;  /* <<< ADJUSTED SIZE */
+    height: 15px; /* <<< ADJUSTED SIZE */
     border-radius: 50%;
     animation: cursor-color-change 4s linear infinite;
 }
 
 #custom-cursor::before {
-    top: -10px;
+    /* Adjusted position */
+    top: -7px;   /* <<< ADJUSTED POSITION */
     left: 0;
 }
 
 #custom-cursor::after {
+    /* Adjusted position */
     top: 0;
-    left: 10px;
+    left: 7px;    /* <<< ADJUSTED POSITION */
 }
 
 @keyframes cursor-color-change {
@@ -185,10 +172,12 @@ body {
     100% { background-color: #ff00ff; }
 }
 
+/* Cursor Trail */
 .trail-dot {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    /* Decreased size */
+    width: 4px;   /* <<< ADJUSTED SIZE */
+    height: 4px;  /* <<< ADJUSTED SIZE */
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
