@@ -10,9 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    /* ADDED BACK: This hides the default OS cursor site-wide */
-    /* Added !important for extra emphasis, ensuring it overrides */
-    cursor: none !important;
+    cursor: none !important; /* Hides default OS cursor */
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -69,8 +67,7 @@ body {
     opacity: 1;
     transition: opacity 0.5s ease-out;
     overflow: visible;
-    /* cursor: pointer; <--- REMOVED */
-    /* The area is still clickable via JS, just no hand pointer */
+    /* No cursor pointer needed as body cursor is none */
 }
 
 #entry-screen p {
@@ -133,7 +130,7 @@ body {
     text-shadow: 0 0 4px #ff00ff, 0 0 8px #ff00ff;
     animation: color-change-icons 6s linear infinite;
     display: inline-block;
-    /* cursor: pointer; <--- REMOVED */
+    /* No cursor pointer needed */
 }
 
 .icon-links a i {
@@ -166,26 +163,27 @@ body {
     text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
 }
 
-/* Footer Credit Link */
+/* Footer Credit Link START */
 .footer-credit {
     display: block;
-    font-size: 0.7rem;
-    color: #ff00ff;
-    text-shadow: 0 0 3px #ff00ff;
-    margin-top: 2rem;
+    font-size: 0.7rem; /* Very small */
+    color: #ff00ff; /* Neon pink */
+    text-shadow: 0 0 3px #ff00ff; /* Subtle glow */
+    margin-top: 2rem; /* Space above */
     text-decoration: none;
     transition: color 0.3s, text-shadow 0.3s;
-    user-select: none;
+    user-select: none; /* Non-selectable */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    /* cursor: pointer; <--- REMOVED */
+    /* No cursor pointer needed */
 }
 
 .footer-credit:hover {
     color: #fff;
     text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
 }
+/* Footer Credit Link END */
 
 
 /* --- Custom Cursor --- */
