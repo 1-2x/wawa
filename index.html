@@ -3,106 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your Product Name] - Simple & Secure</title>
+    <title>[Your Shop Name] - Awesome Products</title>
     <link rel="stylesheet" href="style.css">
     </head>
 <body>
 
-    <header class="navbar">
-        <div class="container">
-            <a href="#" class="logo">[Your Logo/Brand]</a>
-            <nav>
-                <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#">Docs</a></li> <li><a href="#">Login</a></li> </ul>
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="#" class="logo">[Your Shop Name]</a>
+            <nav class="main-nav">
+                <a href="#" class="cart-link snipcart-checkout"> Cart
+                    </a>
             </nav>
-            <a href="#pricing" class="cta-button header-cta">Get Started</a>
         </div>
     </header>
 
-    <section id="hero">
-        <div class="container hero-content">
-            <h1>The Easiest Way to Integrate [Your Feature, e.g., Authentication]</h1>
-            <p>Focus on your core product. We handle the complexities of [Your Feature] with a simple, secure solution.</p>
-            <a href="#pricing" class="cta-button hero-cta">Get Your License Now</a>
-            </div>
-    </section>
+    <main class="container content-area">
+        <h2>Our Products</h2>
 
-    <section id="features">
-        <div class="container">
-            <h2>Why Choose [Your Product Name]?</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <h3>Easy Integration</h3>
-                    <p>Get up and running in minutes with our straightforward documentation and libraries.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Secure & Reliable</h3>
-                    <p>Built with security best practices to protect you and your users.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Scalable Solution</h3>
-                    <p>Designed to grow with your application, from startup to enterprise.</p>
-                </div>
-                 <div class="feature-item">
-                    <h3>Developer Friendly</h3>
-                    <p>Clear APIs and dedicated support to help you succeed.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <div class="product-grid">
 
-    <section id="pricing">
-        <div class="container">
-            <h2>Simple, Transparent Pricing</h2>
-            <div class="pricing-grid">
-                <div class="pricing-plan">
-                    <h3>Basic</h3>
-                    <p class="price">£9 <span>/ month</span></p>
-                    <ul>
-                        <li>Feature One</li>
-                        <li>Feature Two</li>
-                        <li>Basic Support</li>
-                        <li>Up to 1,000 Users</li>
-                    </ul>
-                    <a href="#" class="cta-button pricing-cta">Get Basic</a>
-                </div>
-                <div class="pricing-plan popular">
-                    <span class="popular-badge">Most Popular</span>
-                    <h3>Pro</h3>
-                    <p class="price">£29 <span>/ month</span></p>
-                    <ul>
-                        <li>All Basic Features</li>
-                        <li>Advanced Feature X</li>
-                        <li>Priority Support</li>
-                        <li>Up to 10,000 Users</li>
-                    </ul>
-                     <a href="#" class="cta-button pricing-cta">Get Pro</a>
-                </div>
-                <div class="pricing-plan">
-                    <h3>Enterprise</h3>
-                    <p class="price">Contact Us</p>
-                    <ul>
-                        <li>All Pro Features</li>
-                        <li>Custom Integrations</li>
-                        <li>Dedicated Account Manager</li>
-                        <li>Unlimited Users</li>
-                    </ul>
-                    <a href="mailto:sales@yourdomain.com" class="cta-button pricing-cta">Contact Sales</a>
+            <div class="product-card">
+                <img src="placeholder-1.jpg" alt="Product 1 Image" class="product-image"> <div class="product-info">
+                    <h3 class="product-title">Cool Product One</h3>
+                    <p class="product-price">£14.99</p>
+                    <a href="#" class="buy-button"
+                       data-item-id="product-01"      
+                       data-item-price="14.99"      
+                       data-item-url="/"            
+                       data-item-name="Cool Product One"
+                       data-item-image="placeholder-1.jpg"> Add to Cart / Buy Now
+                    </a>
+                    </div>
+            </div>
+
+            <div class="product-card">
+                <img src="placeholder-2.jpg" alt="Product 2 Image" class="product-image"> <div class="product-info">
+                    <h3 class="product-title">Awesome Gadget Pro</h3>
+                    <p class="product-price">£29.95</p>
+                     <a href="#" class="buy-button"
+                       data-item-id="product-02"      
+                       data-item-price="29.95"      
+                       data-item-url="/"            
+                       data-item-name="Awesome Gadget Pro"
+                       data-item-image="placeholder-2.jpg"> Add to Cart / Buy Now
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 [Your Company Name]. All rights reserved.</p>
-            <nav class="footer-nav">
-                 <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
-            </nav>
-        </div>
-    </footer>
-
-     </body>
-</html>
+            <div class="product-card">
+                <img src="placeholder-3.jpg" alt="Product 3 Image" class="product-image"> <div class="product-info">
+                    <h3 class="product-title">Digital License Key</h3>
+                    <p class="product-price">£49.00</p>
+                     <a href="#" class="buy-button"
+                       data-item-id="product-03"      
+                       data-item-price="49.00"      
+                       data-item-url="/"            
+                       data-item-name="Digital License Key"
+                       data-item-image="placeholder-3.jpg"> Add to Cart / Buy Now
+                    </a>
+                </div>
+            </div>
